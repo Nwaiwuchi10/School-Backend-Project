@@ -3,7 +3,7 @@ import path from "path";
 import dotenv from "dotenv";
 import colors from "colors";
 import connectDB from "./config/db.js";
-
+import morgan from "morgan";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import studentRoutes from "./routes/studentRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -21,11 +21,15 @@ connectDB();
 
 const app = express();
 
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
+// app.get("/", (req, res) => {
+//   res.send("API is running...");
+// });
 
 app.use("/api/students", studentRoutes);
 app.use("/api/users", userRoutes);
@@ -38,8 +42,8 @@ app.use("/api/upload", uploadRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-// const __dirname = path.resolve();
-// app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 const PORT = process.env.PORT || 5000;
 app.listen(
@@ -47,4 +51,8 @@ app.listen(
   console.log(
     `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
   )
+);
+app.use(express.static(path.join(__dirname, "/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "build/index.html"))
 );
