@@ -1,0 +1,35 @@
+{
+  "name": "skul-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node SKUL-BACKEND /server",
+    "server": "nodemon SKUL-BACKEND/server",
+    "client": "npm start --prefix proshop-front-end",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node probackend/seeder",
+    "data:destroy": "node probackend/seeder -d"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.10",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "nodemon": "^2.0.15"
+  }
+}
