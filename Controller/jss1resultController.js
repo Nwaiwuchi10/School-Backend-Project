@@ -47,6 +47,8 @@ const getJss1resultById = asyncHandler(async (req, res) => {
     res.status(404).json({ message: "Vendor not found" });
   }
 });
+//////
+
 //
 //@desc Delete a vendor
 //@route DELETE/api/vendors/:id
