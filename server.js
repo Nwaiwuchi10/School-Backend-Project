@@ -38,6 +38,9 @@ app.use("/api/resultcheckers", resultcheckerRoutes);
 app.use("/api/jss1results", jss1resultRoutes);
 app.use("/api/ss1results", ss1resultRoutes);
 app.use("/api/upload", uploadRoutes);
+app.get("/api/config/paypal", (req, res) =>
+  res.send(process.env.PAYPAL_CLIENT_ID)
+);
 
 app.use(notFound);
 app.use(errorHandler);
@@ -46,12 +49,19 @@ const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 const PORT = process.env.PORT || 5000;
-app.listen(
-  PORT,
+app.listen(process.env.PORT || 3000, function () {
   console.log(
-    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
-  )
-);
+    "Express server listening on port %d in %s mode",
+    this.address().port,
+    app.settings.env
+  );
+});
+// app.listen(
+//   PORT,
+//   console.log(
+//     `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+//   )
+// );
 app.use(express.static(path.join(__dirname, "/build")));
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "build/index.html"))
