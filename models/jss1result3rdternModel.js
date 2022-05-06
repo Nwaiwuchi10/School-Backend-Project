@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-
-const ss1resultSchema = mongoose.Schema(
+const jss1result3rdtermSchema = mongoose.Schema(
   {
     name: {
       type: String,
@@ -22,50 +21,54 @@ const ss1resultSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    option: {
-      type: String,
-      required: true,
-    },
+
     registrationNumber: {
       type: String,
       required: true,
     },
 
     mathematics: {
-      type: String,
+      type: Number,
       required: true,
+      default: 0,
     },
     english: {
-      type: String,
+      type: Number,
       required: true,
+      default: 0,
     },
-    Biology: {
-      type: String,
+    healthScience: {
+      type: Number,
       required: true,
+      default: 0,
     },
     igboLanguage: {
-      type: String,
+      type: Number,
       required: true,
+      default: 0,
     },
     CRK: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    TotalScore: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    TotalAverage: {
       type: String,
       required: true,
     },
-    Government: {
+    Position: {
       type: String,
       required: true,
     },
-    Economics: {
-      type: String,
+    basicScience: {
+      type: Number,
       required: true,
-    },
-    Physics: {
-      type: String,
-      required: true,
-    },
-    Chemistry: {
-      type: String,
-      required: true,
+      default: 0,
     },
   },
   {
@@ -73,6 +76,9 @@ const ss1resultSchema = mongoose.Schema(
   }
 );
 
-const Ss1result = mongoose.model("Ss1result", ss1resultSchema);
+const Jss1result3rdterm = mongoose.model(
+  "Jss1result3rdterm",
+  jss1result3rdtermSchema
+);
 
-export default Ss1result;
+export default Jss1result3rdterm;

@@ -2,7 +2,7 @@
 import jwt from "jsonwebtoken";
 
 import asyncHandler from "express-async-handler";
-// import User from "../models/userModel.js";
+import User from "../models/userModel.js";
 
 // const asyncHandler = require("express-async-handler");
 // const User = require("../models/userModel");
@@ -19,7 +19,7 @@ const protect = asyncHandler(async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
       // req.user = await User.findById(decoded.id);
-      req.staffuser = await Staffuser.findById(decoded.id).select("-password");
+      req.user = await User.findById(decoded.id).select("-password");
 
       next();
     } catch (error) {
@@ -37,7 +37,7 @@ const protect = asyncHandler(async (req, res, next) => {
 });
 
 const admin = (req, res, next) => {
-  if (req.staffuser && req.staffuser.isAdmin) {
+  if (req.user && req.user.isAdmin) {
     next();
   } else {
     res.status(401);

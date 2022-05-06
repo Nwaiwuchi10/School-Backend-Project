@@ -7,15 +7,39 @@ import Jss1result from "../models/jss1resultModel.js";
 //@desc Fetch all vendors
 //@route Get/api/vendors
 //@acess Fetch Public
-
 //@desc Fetch all vendors
 //@route Get/api/vendors
 //@acess Fetch Public
 
 const getJss1result = asyncHandler(async (req, res) => {
-  const jss1results = await Jss1result.find({});
-  res.json({ jss1results: jss1results, hasError: false });
+  const pageSize = 20;
+  const page = Number(req.query.pageNumber) || 1;
+
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
+    : {};
+
+  const count = await Jss1result.countDocuments({ ...keyword });
+
+  const jss1results = await Jss1result.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+  res.json({ jss1results, page, pages: Math.ceil(count / pageSize) });
 });
+
+//@desc Fetch all vendors
+//@route Get/api/vendors
+//@acess Fetch Public
+
+// const getJss1result = asyncHandler(async (req, res) => {
+//   const jss1results = await Jss1result.find({});
+//   res.json({ jss1results: jss1results, hasError: false });
+// });
 
 //@desc Fetch all vendors
 //@route Get/api/vendors

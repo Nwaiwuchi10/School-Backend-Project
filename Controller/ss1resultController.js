@@ -129,6 +129,10 @@ const updateSs1result = asyncHandler(async (req, res) => {
   }
 });
 
+// else {
+//   res.status(404);
+//   throw new Error("Ss1result not found");
+// }
 // //@desc Create new review
 // //@route POST/api/vendors/:id/reviews
 // //@acess Private

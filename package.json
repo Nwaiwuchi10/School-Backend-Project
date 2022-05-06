@@ -5,13 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node SKUL-BACKEND /server",
-    "server": "nodemon SKUL-BACKEND/server",
-    "client": "npm start --prefix proshop-front-end",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "data:import": "node probackend/seeder",
-    "data:destroy": "node probackend/seeder -d"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

@@ -15,9 +15,9 @@ import {
   //   postClasses,
 } from "../Controller/ss1resultController.js";
 import { protect, admin } from "../middleware/authMiddleware.js";
-router.route("/").get(getSs1result).post(protect, createSs1result);
+router.route("/").get(getSs1result).post(createSs1result);
 
-router.route("/:id").get(getSs1resultById).put(protect, updateSs1result);
+router.route("/:id").get(getSs1resultById).put(updateSs1result);
 
 // router.get("/classes", getClasses);
 // router.post("/classes", postClasses);
