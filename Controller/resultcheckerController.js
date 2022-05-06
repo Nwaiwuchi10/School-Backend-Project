@@ -11,7 +11,7 @@ const createResultcheck = asyncHandler(async (req, res) => {
 
   const resultchecker = await Resultchecker.create({
     registrationNumber,
-    // user: req.user._id,
+    user: req.user._id,
     classes,
     term,
     year,
