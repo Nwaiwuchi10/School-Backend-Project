@@ -2,11 +2,16 @@
   "name": "skul-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node skul-backend /server",
+    "server": "nodemon skul-backend/server",
+    "client": "npm start --prefix proshop-front-end",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node skul-backend/seeder",
+    "data:destroy": "node probackend/seeder -d"
   },
   "engines": {
     "node": "14.17.1"
